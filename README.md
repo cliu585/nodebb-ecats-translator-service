@@ -62,7 +62,7 @@ git cherry-pick f385a392cfe26812a86b2c87729d561e5c3c9cd4
 ```
 
 The changes will call translator API when a new post
-is received. If the API response indicates that the post is not in English, it will show the translated content in the post.
+is received. If the API response indicates that the post is not in English, it will show the translated content in the post. 
 
 Since you need to use your own translator service, you need to provide your API endpoint through environment
 variable `TRANSLATOR_API`.

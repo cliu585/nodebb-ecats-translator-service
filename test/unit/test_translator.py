@@ -18,6 +18,8 @@ def test_llm_gibberish_response():
     assert is_english == True
     assert translated_content == "askdfalkjwejf klwqj"
 
+@patch('vertexai.preview.language_models.ChatModel.from_pretrained')
+@patch('vertexai.preview.language_models.ChatModel.start_chat')
 @patch('vertexai.preview.language_models._PreviewChatSession.send_message')
 def test_unexpected_language(mocker):
     mocker.return_value.text = "I don't understand your request"
@@ -25,6 +27,8 @@ def test_unexpected_language(mocker):
     assert is_english == True
     assert translated_content == "Aquí está su primer ejemplo."
 
+@patch('vertexai.preview.language_models.ChatModel.from_pretrained')
+@patch('vertexai.preview.language_models.ChatModel.start_chat')
 @patch('vertexai.preview.language_models._PreviewChatSession.send_message')
 def test_return_none(mocker):
     mocker.return_value.text = None
@@ -32,6 +36,8 @@ def test_return_none(mocker):
     assert is_english == True
     assert translated_content == "Aquí está su primer ejemplo."
 
+@patch('vertexai.preview.language_models.ChatModel.from_pretrained')
+@patch('vertexai.preview.language_models.ChatModel.start_chat')
 @patch('vertexai.preview.language_models._PreviewChatSession.send_message')
 def test_return_nonstring(mocker):
     mocker.return_value.text = []
@@ -39,6 +45,8 @@ def test_return_nonstring(mocker):
     assert is_english == True
     assert translated_content == "Aquí está su primer ejemplo."
 
+@patch('vertexai.preview.language_models.ChatModel.from_pretrained')
+@patch('vertexai.preview.language_models.ChatModel.start_chat')
 @patch('vertexai.preview.language_models._PreviewChatSession.send_message')
 def test_return_empty(mocker):
     mocker.return_value.text = ""

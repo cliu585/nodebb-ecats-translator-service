@@ -4,19 +4,19 @@ import ipytest
 
 
 def test_chinese():
-    is_english, translated_content = translate_content("这是一条中文消息")
+    is_english, translated_content = translate_content("这是一条中文消息.")
     assert is_english == False
     assert translated_content == "This is a Chinese message"
 
 def test_llm_normal_response():
-    is_english, translated_content = translate_content("This is an English message")
+    is_english, translated_content = translate_content("This is an English message.")
     assert is_english == True
-    assert translated_content == "This is an English message"
+    assert translated_content == "This is an English message."
 
 def test_llm_gibberish_response():
-    is_english, translated_content = translate_content("askdfalkjwejf klwqj")
+    is_english, translated_content = translate_content("askdfalkjwejf klwqj.")
     assert is_english == True
-    assert translated_content == "askdfalkjwejf klwqj"
+    assert translated_content == "askdfalkjwejf klwqj."
 
 @patch('vertexai.preview.language_models._PreviewChatSession.send_message')
 def test_unexpected_language(mocker):

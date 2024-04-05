@@ -12,6 +12,9 @@ on:
 permissions:
   contents: read
 
+env:
+  PROJECT_ID: translator-service-418716
+
 jobs:
   build:
 
@@ -28,6 +31,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        credentials_json: ${{ secrets.PRIVATE_KEY }}
+    - run: gcloud config set project $PROJECT_ID
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
